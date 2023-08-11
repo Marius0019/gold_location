@@ -1,0 +1,75 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {% if editMode %}
+        Modifier
+    {% else %}
+        Ajouter
+    {% endif %}
+{% endblock %}
+
+
+{% block body %}
+
+<div class="container my-3 p-4 w-50 border border-primary" >
+<h1 class="text-center my-4 p-4 bg-warning"> Liste des voitures</h1>
+
+    <div class="container mt-5 ">
+        <table class="table table-warning table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Titre</th>
+                    <th>Marque</th>
+                    <th>Modèle</th>
+                    <th>Description</th>
+                    <th>Photo</th>
+                    <th>Prix</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vehicule in vehicules %}
+                    
+                    <tr>
+                        <td>{{ vehicule.id }}</td>
+                        <td>{{ vehicule.titre }}</td>
+                        <td>{{ vehicule.marque }}</td>
+                        <td>{{ vehicule.modele }}</td>
+                        <td>{{ vehicule.description|slice(0, 100)}}</td>
+                        <td><img class="img-fluid" src="{{ asset('img/upload/' ~ vehicule.photo) }}" alt=""></td>
+                        <td>{{ vehicule.prixJournalier }}</td>
+                        <td>
+                            <a href="{{ path('dashboard_show', {id: vehicule.id} ) }}" class=""><i class="bi bi-search"></i></a>
+                            <a href="{{ path('dashboard_gestion', {id: vehicule.id} )}}" class=""><i class="bi bi-pencil-square"></i></a>
+                            <a href="{{ path('dashboard_supprimer', {id: vehicule.id} )}}" class=""><i class="bi bi-trash3-fill"></i></a>
+                        </td>
+                    </tr>
+    
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="container my-4 border border-primary p-4">
+    <h2 class="text-center my-4 p-3 mb-2 bg-warning ">Ajoutez une voiture</h2>
+    {{ form_start(formVehicules) }}
+    <div class="row">
+    <div class="col-6">{{ form_row(formVehicules.titre) }}</div>
+    <div class="col-6">{{ form_row(formVehicules.photo) }}</div>
+    </div>
+    <div class="row">
+    <div class="col-6">{{ form_row(formVehicules.marque) }}</div>
+    <div class="col-6">{{ form_row(formVehicules.description) }}</div>
+    <div class="col-6">{{ form_row(formVehicules.modele) }}</div>
+    <div class="col-6">{{ form_row(formVehicules.prix_journalier) }}</div>
+    <div class="col-12">{{ form_row(formVehicules.date_enregistrment) }}</div>
+    </div>
+    <button class="text-center btn btn-warning text-dark">Enregistrer</button>
+    {{ form_end(formVehicules) }}
+        </div>
+
+{% endblock %}
+
+
+

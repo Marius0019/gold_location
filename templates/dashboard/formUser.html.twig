@@ -1,0 +1,81 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {% if editMode %}
+        Modifier
+    {% else %}
+        Ajouter
+    {% endif %}
+{% endblock %}
+
+
+{% block body %}
+
+<div class="container my-3 p-4 w-50 border border-primary" >
+<h1 class="text-center my-4 p-4 bg-warning"> Liste des Membres </h1>
+
+    <div class="container mt-5">
+        <table class="table table-warning table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Pseudo</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Email</th>
+                    <th>civilité</th>
+                    <th>date_enregistrement</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in user %}
+                    
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.pseudo }}</td>
+                        <td>{{ user.nom }}</td>
+                        <td>{{ user.prenom }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.civilite }}</td>
+                        <td>{{ user.statut }}</td>
+                        <td>{{ user.date_enregistrement|date('d/m/Y à  H:i:s')}}</td>
+                        <td>
+                            <a href="{{ path('dashboard_show', {id: user.id} ) }}" class=""><i class="bi bi-search"></i></a>
+                            <a href="{{ path('dashboard_modifier', {id: user.id} )}}" class=""><i class="bi bi-pencil-square"></a>
+                            <a href="{{ path('dashboard_supprimer', {id: user.id} )}}" class=""><i class="bi bi-trash3-fill"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="container my-4 border border-primary p-4">
+        <h2 class="text-center my-4 p-3 mb-2 bg-warning ">Ajoutez un membre</h2>
+    {{ form_start(formUser) }}
+    <div class="row">
+    <div class="col-6">{{ form_row(formUser.pseudo) }}</div>
+    <div class="col-6">{{ form_row(formUser.email) }}</div>
+    </div>
+    <div class="row">
+    <div class="col-6">{{ form_row(formUser.password) }}</div>
+    <div class="col-6">{{ form_row(formUser.civilite) }}</div>
+    <div class="col-6">{{ form_row(formUser.nom) }}</div>
+    {# {% for item in items %}
+        
+    {% endfor %} #}
+    <div class="col-6">{{ form_row(formUser.roles) }}</div>
+    </div>
+    <div class="row">
+    <div class="col-6">{{ form_row(formUser.prenom) }}</div>
+    <button class="text-center btn btn-warning text-dark">Enregistrer</button>
+    </div>
+    {{ form_end(formUser) }}
+        </div>
+    </div>
+
+{% endblock %}
+
+
+

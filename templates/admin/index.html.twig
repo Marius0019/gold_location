@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Gestion des commandes{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <table class="table table-warning table-striped">
+        <thead>
+            <tr>
+                <th>Membre</th>
+                <th>Vehicules</th>
+                <th>Date et heure de départ</th>
+                <th>Date et heure de fin</th>
+                <th>Prix</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for commande in commandes %}
+                
+                <tr>
+                    <td>{{ commande.user.id }}</td>
+                    <td>{{ commande.vehicule.id }}</td>
+                    <td>{{ commande.dateHeureDepart|date('d/m/Y à  H:i:s') }}</td>
+                    <td>{{ commande.dateHeureFin|date('d/m/Y à  H:i:s') }}</td>
+                    <td>{{ vehicule.prixTotal }}</td>
+                    <td>
+                        <a href="{{ path('dashboard_show', {id: vehicule.id} ) }}" class="text-light"><i class="bi bi-search"></i></a>
+                        <a href="{{ path('dashboard_modifier', {id: vehicule.id} )}}" class="text-light"><i class="bi bi-pencil-square"></i></a>
+                        <a href="{{ path('dashboard_supprimer', {id: vehicule.id} )}}" class="text-light"><i class="bi bi-trash3-fill"></i></a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

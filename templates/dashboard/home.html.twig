@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %} {% block title %}Accueil!{% endblock %} {% block
+body %}
+<div class="container text-center my-4 border border-warning p-2">
+  <h1>Bienvenue sur notre site</h1>
+  <p>Location de voiture 24/24 et 7j/7</p>
+</div>
+
+<div
+  id="carouselExampleSlidesOnly"
+  class="carousel slide"
+  data-bs-ride="carousel"
+>
+  <div class="carousel-inner">
+    <div class="carousel-item active card">
+      <img
+        src="{{ asset('img/gold.jpg') }} "
+        alt="Image voiture"
+        style="width: 2025px; height: auto"
+        class="d-block mx-auto img-fluid card-img"
+      />
+      <div class="carousel-caption d-none d-md-block"></div>
+    </div>
+    <div class="carousel-item">
+      <img
+        src="{{ asset('img/background.jpg') }} "
+        alt="Image voiture"
+        style="width: 2025px; height: auto"
+        class="d-block mx-auto img-fluid"
+      />
+      <div class="carousel-caption d-none d-md-block"></div>
+      <div class="carousel-item">
+        <img
+          src="{{ asset('img/gold.jpg') }} "
+          alt="Image voiture"
+          style="width: 2025px; height: auto"
+          class="d-block mx-auto img-fluid"
+        />
+      </div>
+    </div>
+  </div>
+{# 
+  {# <table>
+    {% for commande in commandes %}
+
+    <tr class="row table-primary">
+      <td>Adresse de départ</td>
+      <td class="col-3">
+        {{ commande.dateHeureDepart|date('d/m/Y à  H:i:s') }}
+      </td>
+      <td class="col-3">{{ commande.dateHeureFin|date('d/m/Y à  H:i:s') }}</td>
+      <td>
+        <a
+          href="{{ path('commande', { id: commande.id }) }}" class="text-center btn btn-warning text-dark">Valider un véhicule</a>
+      </td>
+    </tr>
+  </table>
+
+  {% endfor %} #} 
+
+
+  {% for vehicule in vehicules %}
+
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{ asset('img/upload/' ~ vehicule.photo) }}" class="img-thumbnail rounded"   alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ vehicule.titre }}</h5>
+          <p class="card-text">{{ vehicule.description|slice(0, 100)}}</p>
+          <a href="{{ path('dashboard_show', { id: vehicule.id }) }}" class="btn btn-outline-warning">Réserver et payer</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+        {% endfor %}
+      
+        <div class="d-flex justify-content-center p-4">
+          <img src="{{ asset('img/entreprise.jpeg') }}" alt="" class="p-4" />
+          <p class="align-items-center">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident
+            voluptates, dolorem neque doloremque veniam a sed repudiandae cum facere
+            architecto cumque mollitia autem? Cum eius tenetur modi repellendus nemo
+            odit. In delectus modi provident error autem, suscipit consectetur sint
+            voluptates sapiente deleniti illo! Illum unde debitis, in cumque nisi
+            atque culpa provident laboriosam! Sit minus enim quam corporis et iste.
+            Possimus, sunt. Perspiciatis odit culpa quidem fugiat tenetur ullam,
+            dolorem amet rem quasi earum dignissimos qui, quis repudiandae tempora
+            maiores deleniti, nemo molestiae magnam ipsa fuga nam laudantium!
+            Quibusdam, id? Vel nostrum saepe quis placeat vitae amet maiores iste quos
+            reprehenderit perspiciatis necessitatibus, enim quia quibusdam quasi atque
+            provident dolores sint ad. Animi eos corrupti itaque modi sapiente ipsa
+            tempora! Sit mollitia quae magnam libero obcaecati, minima vel laborum nam
+            sed! Ad ea repellendus, explicabo doloremque exercitationem, nesciunt
+            magni iusto, molestiae quo optio eveniet accusantium possimus itaque
+            fugiat quas voluptatibus?
+          </p>
+        </div>
+        <div class="text-center p-5">
+          <a href="">Contact</a>
+          <a href="">Mention legale</a>
+          <a href="">Politique de confidentialité</a>
+          <div>
+          <a href=""><i class="bi bi-youtube"></i></a>
+        </div>
+        </div>
+      
+      </div>
+
+  {% endblock %}
+  
+  {% block footer %}
+
+  {% endblock %}
+  

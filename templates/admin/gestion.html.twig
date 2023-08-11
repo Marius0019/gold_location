@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Gestion des articles{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h3 class="text-center m-4">Listes de nos Voitures </h3>
+    <table class="table table-warning table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Titre</th>
+                <th>Marque</th>
+                <th>Modèle</th>
+                <th>Description</th>
+                <th>Photo</th>
+                <th>Prix</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vehicule in vehicules %}
+                
+                <tr>
+                    <td>{{ vehicule.id }}</td>
+                    <td>{{ vehicule.titre }}</td>
+                    <td>{{ vehicule.marque }}</td>
+                    <td>{{ vehicule.modele }}</td>
+                    <td>{{ vehicule.description|slice(0, 100)}}</td>
+                    <td><img src="{{ asset('img/upload/' ~ vehicule.photo) }}" alt="" width="50"></td>
+                    <td>{{ vehicule.prixJournalier }}</td>
+                    <td>
+                        <a href="{{ path('dashboard_show', {id: vehicule.id} ) }}" class="text-black"><i class="bi bi-search"></i></a>
+                        <a href="{{ path('dashboard_modifier', {id: vehicule.id} )}}" class="text-black"><i class="bi bi-pencil-square"></i></a>
+                        <a href="{{ path('dashboard_supprimer', {id: vehicule.id} )}}" class="text-black"><i class="bi bi-trash3-fill"></i></a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
